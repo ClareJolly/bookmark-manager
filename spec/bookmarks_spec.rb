@@ -34,3 +34,32 @@ describe '.delete' do
     expect(Bookmarks.all.length).to eq 0
   end
 end
+
+describe '.update' do
+  it 'updates the bookmark with the given data' do
+    bookmark = Bookmarks.create('http://www.makersacademy.com', 'Makers')
+    updated_bookmark = Bookmarks.update(
+      bookmark.id,
+      'http://www.snakersacademy.com',
+      'Snakers Academy'
+    )
+
+    expect(updated_bookmark).to be_a Bookmarks
+    expect(updated_bookmark.id).to eq bookmark.id
+    expect(updated_bookmark.title).to eq 'Snakers Academy'
+    expect(updated_bookmark.url).to eq 'http://www.snakersacademy.com'
+  end
+end
+
+describe '.find' do
+  it 'returns the requested bookmark object' do
+    bookmark = Bookmarks.create('http://www.makersacademy.com', 'Makers')
+
+    result = Bookmarks.find(bookmark.id)
+
+    expect(result).to be_a Bookmarks
+    expect(result.id).to eq bookmark.id
+    expect(result.title).to eq 'Makers'
+    expect(result.url).to eq 'http://www.makersacademy.com'
+  end
+end

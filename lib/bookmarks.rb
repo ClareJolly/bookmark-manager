@@ -8,13 +8,18 @@ class Bookmarks
     @connection = PG.connect(dbname: 'bookmark_manager')
   end
 
+  def self.find(id)
+    result = @connection.exec("SELECT * FROM bookmarks WHERE id = #{id};")
+    Bookmarks.new(result[0]['id'], result[0]['title'], result[0]['url'])
+  end
+
   def self.all
     bookmarks = @connection.exec('SELECT * FROM bookmarks;')
     bookmarks.map do |bookmark|
       Bookmarks.new(
-        id: bookmark['id'],
-        title: bookmark['title'],
-        url: bookmark['url']
+        bookmark['id'],
+        bookmark['title'],
+        bookmark['url']
       )
     end
   end
@@ -28,9 +33,9 @@ class Bookmarks
       RETURNING id, title, url;}
     result = @connection.exec(sql)
 
-    Bookmarks.new(id: result[0]['id'],
-      title: result[0]['title'],
-      url: result[0]['url'])
+    Bookmarks.new(result[0]['id'],
+      result[0]['title'],
+      result[0]['url'])
   end
 
   def self.delete(id:)
@@ -42,9 +47,19 @@ class Bookmarks
     @connection.exec("DELETE FROM bookmarks WHERE id = #{id}")
   end
 
+  def self.update(id, url, title)
+    sql = %{UPDATE bookmarks SET
+      url = '#{url}',
+      title = '#{title}'
+      WHERE id = #{id} RETURNING id, url, title;}
+    
+    result = @connection.exec(sql)
+    Bookmarks.new(result[0]['id'], result[0]['title'], result[0]['url'])
+  end
+
   attr_reader :id, :title, :url
 
-  def initialize(id:, title:, url:)
+  def initialize(id, title, url)
     @id = id
     @title = title
     @url = url

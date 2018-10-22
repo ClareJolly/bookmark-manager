@@ -6,6 +6,10 @@
 As a user
 So that I can go to websites I visit regularly
 I want to be able to see a list of bookmarks
+
+As a user
+So that I can bookmark a new website
+I want to be able to add a URL to my list of bookmarks
 ```
 ### Domain Model
 

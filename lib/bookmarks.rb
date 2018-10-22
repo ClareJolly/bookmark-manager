@@ -1,4 +1,4 @@
-require 'database_connection'
+require_relative 'database_connection'
 
 class Bookmarks
 
@@ -20,7 +20,9 @@ class Bookmarks
   end
 
   def self.create(url, title)
-
+    # p is_url?(url)
+    return false unless is_url?(url)
+    # p "test"
     sql = %{INSERT INTO bookmarks
       (url, title)
       VALUES
@@ -58,5 +60,11 @@ class Bookmarks
     @id = id
     @title = title
     @url = url
+  end
+
+  private
+
+  def self.is_url?(url)
+    url =~ /\A#{URI::regexp(['http', 'https'])}\z/
   end
 end

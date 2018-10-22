@@ -29,7 +29,7 @@ end
 
 describe '.delete' do
   it 'deletes the given bookmark' do
-    bookmark = Bookmarks.create('Makers', 'http://www.makersacademy.com')
+    bookmark = Bookmarks.create('http://www.makersacademy.com', 'Makers')
     Bookmarks.delete(id: bookmark.id)
     expect(Bookmarks.all.length).to eq 0
   end
@@ -61,5 +61,14 @@ describe '.find' do
     expect(result.id).to eq bookmark.id
     expect(result.title).to eq 'Makers'
     expect(result.url).to eq 'http://www.makersacademy.com'
+  end
+
+  describe '.create' do
+    it 'does not create a new bookmark if the URL is not valid' do
+      Bookmarks.create('not a real bookmark', 'not a real bookmark')
+      expect(Bookmarks.all).not_to include 'not a real bookmark'
+    end
+
+  ### other tests omitted for brevity ###
   end
 end

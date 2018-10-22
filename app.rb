@@ -3,8 +3,6 @@ require './lib/bookmarks'
 
 class BookmarkManager < Sinatra::Base
 
-
-
   get '/' do
     "Hello World!"
   end

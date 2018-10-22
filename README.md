@@ -12,9 +12,19 @@ As a user
 So that I can bookmark a new website
 I want to be able to add a URL to my list of bookmarks
 ```
+ ```
+As a user
+So that I can keep my bookmarks relevant
+I want to delete a bookmark
+```
+```
+As a user
+So that I can keep my bookmarks up to date
+I want to edit a bookmark
+```
 ### Domain Model
 
-![domain model](images/US1.JPG)
+![domain model](images/bookmark_manager_13.png)
 
 ### Database setup
 

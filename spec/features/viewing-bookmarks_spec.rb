@@ -4,18 +4,14 @@ feature 'Feature - Viewing bookmarks' do
 
   scenario 'shows bookmarks' do
 
-    Bookmarks.create(url: "https://www.google.co.uk")
-    Bookmarks.create(url: "https://www.bbc.co.uk")
-    Bookmarks.create(url: "https://www.youtube.com")
-
-    # connection.exec("INSERT INTO bookmarks (url) VALUES ('https://www.google.co.uk');")
-    # connection.exec("INSERT INTO bookmarks (url) VALUES ('https://www.bbc.co.uk');")
-    # connection.exec("INSERT INTO bookmarks (url) VALUES ('https://www.youtube.com');")
+    Bookmarks.create("https://www.google.co.uk", "google")
+    Bookmarks.create("https://www.bbc.co.uk", "bbc")
+    Bookmarks.create("https://www.youtube.com", "youtube")
 
     visit('/bookmarks')
-    expect(page).to have_content "https://www.google.co.uk"
-    expect(page).to have_content "https://www.bbc.co.uk"
-    expect(page).to have_content "https://www.youtube.com"
+    expect(page).to have_link('google', href: 'https://www.google.co.uk')
+    expect(page).to have_link('bbc', href: 'https://www.bbc.co.uk')
+    expect(page).to have_link('youtube', href: 'https://www.youtube.com')
   end
 
 end

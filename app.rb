@@ -3,6 +3,8 @@ require './lib/bookmarks'
 
 class BookmarkManager < Sinatra::Base
 
+  enable :sessions, :method_override
+
   get '/' do
     "Hello World!"
   end
@@ -18,7 +20,12 @@ class BookmarkManager < Sinatra::Base
   end
 
   post '/add-to-database' do
-    Bookmarks.create(params[:url])
+    Bookmarks.create(params[:url], params[:title])
+    redirect '/bookmarks'
+  end
+
+  delete '/bookmarks/:id' do
+    Bookmarks.delete(id: params[:id])
     redirect '/bookmarks'
   end
 

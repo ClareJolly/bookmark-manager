@@ -1,21 +1,16 @@
-require 'pg'
+require 'database_connection'
 
 class Bookmarks
 
-  if ENV['ENVIRONMENT'] == 'test'
-    @connection = PG.connect(dbname: 'bookmark_manager_test')
-  else
-    @connection = PG.connect(dbname: 'bookmark_manager')
-  end
-
   def self.find(id)
-    result = @connection.exec("SELECT * FROM bookmarks WHERE id = #{id};")
+    sql = %{SELECT * FROM bookmarks WHERE id = #{id};}
+    result = DatabaseConnection.query(sql)
     Bookmarks.new(result[0]['id'], result[0]['title'], result[0]['url'])
   end
 
   def self.all
-    bookmarks = @connection.exec('SELECT * FROM bookmarks;')
-    bookmarks.map do |bookmark|
+    result = DatabaseConnection.query("SELECT * FROM bookmarks")
+    result.map do |bookmark|
       Bookmarks.new(
         bookmark['id'],
         bookmark['title'],
@@ -31,7 +26,7 @@ class Bookmarks
       VALUES
       ('#{url}', '#{title}')
       RETURNING id, title, url;}
-    result = @connection.exec(sql)
+    result = DatabaseConnection.query(sql)
 
     Bookmarks.new(result[0]['id'],
       result[0]['title'],
@@ -44,7 +39,7 @@ class Bookmarks
     # else
     #   connection = PG.connect(dbname: 'bookmark_manager')
     # end
-    @connection.exec("DELETE FROM bookmarks WHERE id = #{id}")
+    DatabaseConnection.query("DELETE FROM bookmarks WHERE id = #{id}")
   end
 
   def self.update(id, url, title)
@@ -52,8 +47,8 @@ class Bookmarks
       url = '#{url}',
       title = '#{title}'
       WHERE id = #{id} RETURNING id, url, title;}
-    
-    result = @connection.exec(sql)
+
+    result = DatabaseConnection.query(sql)
     Bookmarks.new(result[0]['id'], result[0]['title'], result[0]['url'])
   end
 

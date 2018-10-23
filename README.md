@@ -20,7 +20,7 @@ I want to delete a bookmark
 ```
 As a user
 So that I can keep my bookmarks up to date
-I want to edit a bookmark
+I want to edit a bookmark 
 ```
 ```
 As a user

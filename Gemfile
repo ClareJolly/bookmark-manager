@@ -1,6 +1,17 @@
-source "https://rubygems.org"
+source 'https://rubygems.org'
 
-gem 'capybara'
+ruby '2.5.0'
+
 gem 'pg'
-gem 'rspec'
+gem 'rake'
 gem 'sinatra'
+gem 'sinatra-flash'
+
+group :test do
+  gem 'capybara'
+  gem 'rspec'
+  gem 'rubocop', '0.56.0'
+  gem 'simplecov', require: false
+  gem 'simplecov-console', require: false
+
+end

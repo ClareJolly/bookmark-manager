@@ -1,5 +1,7 @@
-<p>BOOKMARKS</p><ul>
-  <% @bookmarks.each do |bookmark| %>
+<head>Favourite Websites</head>
+
+<ul>
+<% @bookmarks.each do |bookmark| %>
   <li class="bookmark" id="bookmark-<%= bookmark.id %>">
     <a href="<%= bookmark.url %>" target="_blank">
       <%= bookmark.title %>
@@ -9,11 +11,15 @@
       <input type="submit" value="Delete" />
     </form>
     <form action="/bookmarks/<%= bookmark.id %>/edit" method="get">
-        <input type="submit" value="Edit" />
+        <input type="submit" value="Update" />
       </form>
   </li>
-  <% end %>
+<% end %>
 </ul>
-<p>
-  <%= flash[:notice] %>
-</p>
+
+Add bookmark:
+<form action="/add_bookmark" method="post">
+  <input type="text" name="bookmark">
+  <input type="text" name="title">
+  <input type="submit" value="Submit">
+</form>

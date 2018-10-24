@@ -9,7 +9,7 @@ describe Bookmark do
     end
 
     it 'contains urls' do
-      connection = PG.connect(dbname: 'bookmark_manager_test')
+      # connection = PG.connect(dbname: 'bookmark_manager_test')
 
       bookmark = Bookmark.create(url: "http://www.makersacademy.com", title: "makers")
       Bookmark.create(url: "http://www.destroyallsoftware.com", title: "destroy all software")

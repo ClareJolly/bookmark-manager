@@ -1,6 +1,8 @@
-require 'pg'
+# require 'pg'
+require 'database_connection'
 
 def persisted_data(id)
-  connection = PG.connect(dbname: 'bookmark_manager_test')
-  results = connection.query("SELECT * FROM bookmarks WHERE id=#{id};")
+  # connection = PG.connect(dbname: 'bookmark_manager_test')
+  # results = 
+  DatabaseConnection.query("SELECT * FROM bookmarks WHERE id=#{id};")
 end

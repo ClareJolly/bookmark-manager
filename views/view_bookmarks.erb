@@ -1,5 +1,9 @@
 <head>Favourite Websites</head>
 
+<% if @user %>
+  <h1>Welcome, <%= @user.email %></h1>
+<% end %>
+
 <ul>
   <% @bookmarks.each do |bookmark| %>
     <li class="bookmark" id="bookmark-<%= bookmark.id %>">

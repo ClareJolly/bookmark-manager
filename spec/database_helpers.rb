@@ -1,8 +1,5 @@
-# require 'pg'
-require 'database_connection'
+require_relative '../lib/database_connection.rb'
 
-def persisted_data(id)
-  # connection = PG.connect(dbname: 'bookmark_manager_test')
-  # results = 
-  DatabaseConnection.query("SELECT * FROM bookmarks WHERE id=#{id};")
+def persisted_data(id:, table:)
+  DatabaseConnection.query("SELECT * FROM #{table} WHERE id = '#{id}';")
 end

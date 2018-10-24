@@ -55,7 +55,7 @@ I want to sign in with my email and password
  The below diagram indicates that:
 - A Bookmark *has many* Comments
 - A Comment *belongs to* a Bookmark
- ![Bookmark Manager entity relation diagram](./public/images/bookmark_manager_relations_17_1.png)
+ ![Bookmark Manager entity relation diagram](images/bookmark_manager_relations_17_1.png)
 
 
 ### Database setup

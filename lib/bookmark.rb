@@ -1,6 +1,7 @@
 require 'database_connection'
 require 'uri'
 require_relative './comment'
+require_relative './tag'
 
 class Bookmark
 
@@ -65,6 +66,10 @@ class Bookmark
       id: result[0]['id'],
       title: result[0]['title'],
       url: result[0]['url'])
+  end
+
+  def tags(tag_class = Tag)
+    tag_class.where(bookmark_id: id)
   end
 
   private_class_method

@@ -20,7 +20,7 @@ I want to delete a bookmark
 ```
 As a user
 So that I can keep my bookmarks up to date
-I want to edit a bookmark 
+I want to edit a bookmark
 ```
 ```
 As a user
@@ -32,6 +32,11 @@ As a user
 So that I can make interesting notes
 I want to add a Comment to a Bookmark
 ```
+```
+As a user
+So that I can categorize my bookmarks
+I want to add a Tag to a Bookmark
+```
 
 ### Domain Model
 
@@ -41,7 +46,7 @@ I want to add a Comment to a Bookmark
  The below diagram indicates that:
 - A Bookmark *has many* Comments
 - A Comment *belongs to* a Bookmark
- ![Bookmark Manager entity relation diagram](images/bookmark_manager_relations.png)
+ ![Bookmark Manager entity relation diagram](./public/images/bookmark_manager_relations_17_1.png)
 
 
 ### Database setup

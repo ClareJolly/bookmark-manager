@@ -1,4 +1,5 @@
 require 'database_connection'
+require 'uri'
 
 class Bookmark
 
@@ -25,7 +26,10 @@ class Bookmark
   end
 
   def self.create(url:, title:)
-
+    # p url
+    # return false unless !is_url?(url).nil?
+    return false unless valid_url?(url)
+    # p "test"
     sql = %{INSERT INTO bookmarks
       (url, title) VALUES ('#{url}', '#{title}') RETURNING id, title, url;}
     result = DatabaseConnection.query(sql)
@@ -56,6 +60,12 @@ class Bookmark
       id: result[0]['id'],
       title: result[0]['title'],
       url: result[0]['url'])
+  end
+
+  private_class_method
+  def self.valid_url?(url)
+    # p url
+    url =~ /\A#{URI::regexp(['http', 'https'])}\z/
   end
 
 end

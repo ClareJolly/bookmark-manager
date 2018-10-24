@@ -7,8 +7,8 @@ feature 'Viewing bookmarks' do
   end
 
   scenario 'view bookmarks button leads to another page' do
-    visit('/')
-    click_button('View Bookmarks')
+    visit('/bookmarks')
+    # click_button('View Bookmarks')
     expect(page).to have_content 'Favourite Websites'
   end
 

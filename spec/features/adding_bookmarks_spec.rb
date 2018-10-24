@@ -1,7 +1,7 @@
 feature 'Adding bookmarks' do
   scenario 'Can add a URL to bookmarks' do
-    visit('/')
-    click_button('View Bookmarks')
+    visit('/bookmarks')
+    # click_button('View Bookmarks')
     fill_in :bookmark, with: 'http://www.facebook.com'
     fill_in :title, with: 'facebook'
     click_button('Submit')
@@ -10,8 +10,8 @@ feature 'Adding bookmarks' do
   end
 
   scenario 'The bookmark must be a valid URL' do
-    visit('/')
-    click_button('View Bookmarks')
+    visit('/bookmarks')
+    # click_button('View Bookmarks')
     fill_in('bookmark', with: 'not a real bookmark')
     click_button('Submit')
 

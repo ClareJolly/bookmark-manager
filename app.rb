@@ -16,16 +16,16 @@ class BookmarkManager < Sinatra::Base
   register Sinatra::Flash
 
   get '/' do
-    erb :index
+    'Bookmark Manager'
   end
 
   get '/bookmarks' do
     @user = User.find(id: session[:user_id])
     @bookmarks = Bookmark.all
-    erb :view_bookmarks
+    erb :'bookmarks/index'
   end
 
-  post '/add_bookmark' do
+  post '/bookmarks/new' do
     # p Bookmark.create(url: params[:bookmark], title: params[:title])
     flash[:notice] = "You must submit a valid URL." unless
       Bookmark.create(url: params[:bookmark], title: params[:title])

@@ -227,6 +227,18 @@
         1,
         1,
         null,
+        null,
+        1,
+        1,
+        null,
+        1,
+        1,
+        1,
+        1,
+        null,
+        1,
+        1,
+        null,
         null
       ],
       "/Users/howtorowacat/Dropbox/projects/bookmark-manager/spec/features/deleting_bookmarks_spec.rb": [
@@ -353,9 +365,17 @@
         1,
         null,
         null,
+        null,
+        1,
+        1,
+        1,
+        null,
+        1,
+        null,
+        null,
         null
       ]
     },
-    "timestamp": 1540419838
+    "timestamp": 1540420083
   }
 }
